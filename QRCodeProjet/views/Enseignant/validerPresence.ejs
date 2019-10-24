@@ -1,0 +1,62 @@
+<!doctype html>
+<html id="allrefresh">
+    </head>
+        <title>Valider présence</title>
+        <% include ../layout %>
+        <link href="/styles/cssSwitch.css" rel="stylesheet" type="text/css">
+        <script>
+            $(document).ready(function() {
+                chargeListEtudiant();
+            });
+        </script>
+
+
+    </head>
+    <body id="bodyrefresh">
+    <div class="wrapper">
+            <% include ../Menus/MenuEnseignant %>
+
+        <div id="content">
+
+        <div class="container" >
+            <h2 class="">Séance à valider : </h2>
+            <% if (seance.length == 0){ %>
+                <div class="container list-group-item">
+                    Il n'y pas de séance à valider.
+                </div>
+            <% } else { %>
+                <div class="col-md-5">
+                    <div id="promoSeance" class="container">
+                        <h4 class="pull-left"><%= seance[0].nomP %>&nbsp;&nbsp;<%= seance[0].nomM %></h4>
+                    </div>
+                    <div id="seanceAttr" class="container">
+                        <h4 class="pull-left"><%= seance[0].dateS %>&nbsp;&nbsp;<%= seance[0].heureDebut %>&nbsp;&nbsp;<%= seance[0].heureFin %></h4>
+                    </div>
+                    <div class="col-md-2">
+                        <div id="qrcodeCanvas"></div>
+                    </div>
+                </div>
+                <script>
+                    $('#qrcodeCanvas').qrcode({
+                        text	: "http://localhost:8080/<%= seance[0].idS %>"
+                    });
+                </script>
+
+                <div class="col-md-6">
+                    <button id="switch" type="button" class="btn btn-lg btn-toggle trombi pull-right" data-toggle="button" aria-pressed="false" onclick="chargeListEtudiant()">
+                        <div class="handle"></div>
+                    </button>
+                </div>
+
+                <script>
+                    $("#switchStandard").bootstrapSwitch();
+                </script>
+
+                <div id="listEtu" class="col-md-7" ></div>
+
+            <% } %>
+        </div>
+        </div>
+    </div>
+    </body>
+</html>

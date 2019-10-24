@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Séances</title>
+        <% include ../layout %>
+    </head>
+    <body>
+	<div class="wrapper">
+        <% include ../Menu %>
+		<div id="content">
+			<div class="container">
+				<span class="pull-left"><h1 class="pull-left">Séances :</h1></span>
+				<%if(matieres.length!=0 && enseignants.length!=0) { %>
+					<span class="pull-right"><a class="btn btn-success btn-lg" href="/<%= chemin %>create" role="button"><span class="glyphicon glyphicon-plus"></span></a></span>
+				<% } %>
+			</div>
+
+			<div class="container" id="MainMenu">
+				<div class="list-group panel">
+					<% if(enseignants.length==0) { %>
+					<div class="list-group-item">
+						<div class="container">
+							<div class="col-md-12">
+								<div>Attention il n'y a plus d'enseignants enregistrés. Veuillez Créer des Enseignants pour créer des séances</div>
+							</div>
+						</div>
+					</div>
+					<% } %>
+
+					<ul class="nav nav-tabs">
+						<% for(var i=0; i<=promos.length-1; i++) { %>
+							<li  <% if(i == 1){ %>class="active"<% } %> ><a href="#<%= promos[i].nomP %>" data-toggle="tab" ><%= promos[i].nomP %></a></li>
+						<% } %>
+					</ul>
+					<!-- ************************************************************** -->
+
+					<div class="tab-content">
+						<% for(var i=0; i<=promos.length-1; i++) { %>
+							<div id="<%= promos[i].nomP %>" class="tab-pane fade in  <% if(i == 1){ %>class="active"<% } %>" >
+
+							<% if (matieres.length !=0) { %>
+								<% for(var j=0; j<=matieres.length-1; j++) {
+									if(matieres[j].nomP == promos[i].nomP) {%>
+									<a href="#matiere<%=matieres[j].nomM.replace(/ /g, "")+matieres[j].nomP %>" class="list-group-item " data-toggle="collapse" data-parent="#MainMenu"><strong><%= matieres[j].nomM %>&nbsp;&nbsp;&nbsp;&nbsp;(<small><%=(matieres[j].nomP)%>)</small></strong></a>
+										<div class="collapse" id="matiere<%=matieres[j].nomM.replace(/ /g, "")+matieres[j].nomP  %>">
+											<% if(seances.length !=0) { %>
+
+												<table class="table table-hover" id="tableToggle" style="background-color: white; height: 100px;">
+													<thead>
+														<tr>
+															<th class="info" style="text-align: center">Seances</th>
+															<th class="info" style="text-align: center">Date</th>
+															<th class="info" style="text-align: center">Heure début/Heure fin</th>
+															<th class="info" style="text-align: center">Statut</th>
+															<th class="info" style="text-align: center">Commentaire</th>
+															<th class="info" style="text-align: center">Enseignant</th>
+														</tr>
+													</thead>
+													<tbody>
+														<% var x = 0;
+															var numeroSeance = 0;
+														 for(var k=0; k<=seances.length-1; k++) {
+															if(seances[k].matiereS == matieres[j].idM) {
+																x=1;
+																numeroSeance+=1 %>
+																<tr>
+																	<td class="align-middle" style="text-align: center"><b><%=numeroSeance%></b></td>
+																	<td class="align-middle" style="text-align: center"><b><%=(moment(seances[k].dateS).format("DD/MM/YYYY"))%></b></td>
+																	<td class="align-middle" style="text-align: center"><%=(moment(seances[k].heureDebut, "HH:mm:ss").format("HH:mm"))%> - <%=(moment(seances[k].heureFin, "HH:mm:ss").format("HH:mm"))%></td>
+																	<td class="align-middle" style="text-align: center"><%= ((seances[k].valideS)!=0)? "Validé" : "Non Validé" %></td>
+																	<td class="align-middle" style="text-align: left"><%=(seances[k].commentaire)%></td>
+
+																	<% for(var l=0; l<=enseignants.length-1; l++) {
+																		if(seances[k].userS == enseignants[l].id) {%>
+																			<td class="align-middle" style="text-align: left"><%=(enseignants[l].nomU)%></td>
+																		<%} %>
+																	<%} %>
+																	<% if(moment(new Date()).format("YYYY-MM-DD") == seances[k].dateS && moment(new 	Date()).format("HH:mm") <= seances[k].heureFin
+																		|| moment(new Date()).format("YYYY-MM-DD") < seances[k].dateS)
+																	{ %>
+																		<td class="align-middle" style="text-align: center"><a class="btn btn-danger" href="/<%= chemin %>" onclick="deleteItem('<%= seances[k].idS %>', '<%= chemin %>')" role="button"><span class="glyphicon glyphicon-trash"></span></a>&nbsp;&nbsp;&nbsp;
+																		<a class="btn btn-primary" href="/<%= chemin %><%= seances[k].idS %>" role="button"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;&nbsp;</td>
+																 <% } %>
+																</tr>
+															<%}%>
+														<% } %>
+													</tbody>
+												</table>
+											<% }%>
+											<% if(seances.length == 0) { %>
+												<div class="list-group-item">
+													<div class="container">
+														<div class="col-md-9">
+															<div>Il n'y a pas de Séance pour cette matière.</div>
+														</div>
+													</div>
+												</div>
+											<% } %>
+										</div>
+									<%}%>
+									<% } %>
+								<% } %>
+							</div>
+						<% } %>
+					</div>
+					<!-- ************************************************************** -->
+				</div>
+			</div>
+		</div>
+	</div>
+    </body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+	<title>Profil</title>
+    <% include layout%>
+</head>
+<body>
+<div class="wrapper">
+
+			<% if (user.roleU == "ETUDIANT"){ %>
+				<% include Menus/MenuEtudiant %>
+			<% } else if (user.roleU == "ENSEIGNANT"){ %>
+				<% include Menus/MenuEnseignant %>
+			<% } else { %>
+				<% include Menu %>
+			<% } %>
+
+			<div id="content">
+				<div>
+					<div class="text-center">
+						<h1>Profil</h1>
+					</div>
+
+					<div class="well">
+					<h3><span class="fa fa-user"></span> </h3>
+					<p>
+						<strong>Nom</strong>: <%= user.nomU %><br>
+						<br>
+						<strong>Prénom</strong>: <%= user.prenomU %><br>
+						<% if (user.roleU == "ETUDIANT"){ %>
+						<strong>Promo</strong>: <%= user.promotionU %>
+						<% } %>
+					</p>
+				</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

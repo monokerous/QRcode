@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head>
+    <title>Mail</title>
+    <% include layout %>
+</head>
+<body>
+<div class="container" >
+    <h1>Ci-suit vos séances du <%= date %>: </h1>
+    <% for(var i=0; i<= allSeances.length-1; i++) { %>
+            <div><h3>SEANCE de <%= allSeances[i].heureDebut %> : </h3></div>
+            <div>
+                <img src='cid:uniqueQRCode<%= i %>' />
+            </div>
+    <% } %>
+</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+    <title>Détail Seance</title>
+    <% include ../layout %>
+</head>
+
+<body>
+<div class="wrapper">
+    <% include ../Menu %>
+    <div id="content">
+    <div class="container">
+        <div class="col-sm-6 col-sm-offset-3">
+            <h1><span class="fa fa-sign-in"></span>Modifier la Séance</h1>
+
+            <form id="form" name="seancemodif">
+                <div class="form-group">
+                    <label>Nom</label>
+                    <input type="text" class="form-control" name="nom" value="<%=(seance[0].nomS.toUpperCase())%>" maxlength="50" required>
+                </div>
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" class="form-control" name="date" value="<%=(seance[0].dateS)%>" required>
+                </div>
+                <div class="form-group">
+                    <label>Heure Debut</label>
+                    <input type="time" class="form-control" name="hDebut" value="<%=(seance[0].heureDebut)%>" required>
+                </div>
+                <div class="form-group">
+                    <label>Heure Fin</label>
+                    <input type="time" class="form-control" name="hFin" value="<%=(seance[0].heureFin)%>" required>
+                </div>
+                <div class="form-group">
+                    <label>Commentaire</label>
+                    <textarea class="form-control" name="commentaire"><%=(seance[0].commentaire)%></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Matiere</label>
+                    <select name="matiere">
+                        <% for(var i=0; i<matieres.length; i++) {%>
+                            <option value="<%=matieres[i].idM%>" <% if(matieres[i].idM==seance[0].matiereS) { %> selected="selected" <% } %> ><%=matieres[i].nomM%></option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Enseignant</label>
+                    <select name="user">
+                        <% for(var i=0; i<enseignants.length; i++) {%>
+                            <option value="<%=enseignants[i].id%>" <% if(enseignants[i].id==seance[0].userS) { %> selected="selected" <% } %> ><%=enseignants[i].nomU%></option>
+                        <% } %>
+                    </select>
+                </div>
+
+                <div class="pull-right">
+                    <a href="/admin/seances" class="btn btn-secondary btn-lg">Annuler</a>
+                    <a class="btn btn-primary btn-lg" onclick="formSeanceOK('<%= seance[0].idS %>', '<%= chemin %>')">Appliquer</a>
+                    <a id="redirection" href="/<%= chemin %>"></a>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>
+

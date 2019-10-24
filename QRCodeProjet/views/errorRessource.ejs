@@ -1,0 +1,19 @@
+<html>
+<head>
+    <title>Error</title>
+    <% include layout %>
+</head>
+    <body>
+        <% if (role == "ETUDIANT"){ %>
+            <% include Menus/MenuEtudiant %>
+        <% } else if (role == "ENSEIGNANT"){ %>
+            <% include Menus/MenuEnseignant %>
+        <% } else { %>
+            <% include Menu %>
+        <% } %>
+    <div class="container">
+            <h1> ERROR RESSOURCE</h1>
+            <h2> La ressource <%= ressource %> demandée est inexistante</h2>
+        </div>
+    </body>
+</html>

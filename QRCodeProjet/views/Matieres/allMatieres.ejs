@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Matières</title>
+        <% include ../layout %>
+    </head>
+    <body>
+    <div class="wrapper">
+        <% include ../Menu %>
+        <div id="content">
+        <div class="container">
+            <span class="pull-left"><h1 class="pull-left">Matières :</h1></span>
+            <% if(promos.length != 0) { %>
+                <span class="pull-right"><a class="btn btn-success btn-lg" href="/<%= chemin %>create" role="button"><span class="glyphicon glyphicon-plus"></span></a></span>
+            <% } %>
+        </div>
+        <div class="container" id="MainMenu">
+            <div class="list-group panel">
+                <% if (promos.length !=0) { %>
+                    <% for(var i=0; i<=promos.length-1; i++) { %>
+                        <a href="#promos<%=promos[i].idP %>" class="list-group-item " data-toggle="collapse" data-parent="#MainMenu"><strong><%= promos[i].nomP %></strong></a>
+                        <div class="collapse" id="promos<%=promos[i].idP %>">
+                            <% if(matieres.length !=0) {
+                                var x = 0;
+                                for(var j=0; j<=matieres.length-1; j++) {
+                                    if(matieres[j].promotionS == promos[i].idP) {
+                                        x=1; %>
+                                        <div class="list-group-item">
+                                            <div class="container">
+                                                <div class="col-md-5">
+                                                    <div><strong><%=(matieres[j].nomM.toUpperCase())%></strong></div>
+                                                </div>
+												<div class="col-md-4">
+                                                    <div><strong>Heures prévues : <%=(matieres[j].totalHeure)%></strong></div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <span class="pull-right"><a class="btn btn-danger" href="/<%= chemin %>" onclick="confirmBeforeDelete('<%= matieres[j].idM %>', '<%= chemin %>')" role="button"><span class="glyphicon glyphicon-trash"></span></a>&nbsp;&nbsp;&nbsp;</span>
+                                                    <span class="pull-right"><a class="btn btn-primary" href="/<%= chemin %><%= matieres[j].idM %>" role="button"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;&nbsp;</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <% } %>
+                                <% } %>
+
+                                <% if(x==0) {
+                                    x=1; %>
+                                    <div class="list-group-item">
+                                        <div class="container">
+                                            <div class="col-md-12">
+                                                <div>Il n'y a pas de matières pour cette promotion.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                 <% } %>
+                            <% } else { %>
+                                <div class="list-group-item">
+                                    <div class="container">
+                                        <div class="col-md-9">
+                                            <div><strong>Il n'y a pas de matières pour cette promotion.</strong></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% } %>
+                        </div>
+                    <% } %>
+                <% } else { %>
+                    <div class="list-group-item">
+                        <div class="container">
+                            <div class="col-md-9">
+                                <div><strong>Veuillez créer des promotions avant de créer des Matières. Merci.</strong></div>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+        </div>
+    </div>
+    </body>
+</html>

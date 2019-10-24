@@ -1,0 +1,67 @@
+<!--<nav class="navbar navbar-custom navbar-fixed-top">-->
+    <!--<div class="container-fluid">-->
+        <!--<div class="navbar-header">-->
+            <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">-->
+                <!--<span class="sr-only">Toggle navigation</span>-->
+            <!--</button>-->
+            <!--<a class="navbar-brand" href="/etudiant/profile"></i>&nbsp;UniFlash</a>-->
+        <!--</div>-->
+        <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+            <!--<ul class="nav navbar-nav">-->
+                <!--<li><a class="nav-item nav-link" href="/etudiant/edtJournee">EDT</a></li>-->
+            <!--</ul>-->
+            <!--<ul class="nav navbar-nav navbar-right">-->
+                <!--<li><a class="nav-item nav-link" href="/etudiant/profile">-->
+                        <!--<i class="glyphicon glyphicon-user"></i>&nbsp;Profil</a>-->
+                <!--</li>-->
+                <!--<li><a href="/logout" >Déconnexion&nbsp;<i class="glyphicon glyphicon-off"></i></a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</nav>-->
+<!--<script>-->
+    <!--$(document).ready(function() {-->
+        <!--$('a[href="' + this.location.pathname + '"]').parent().addClass('active');-->
+    <!--});-->
+<!--</script>-->
+<nav id="sidebar">
+    <div class="sidebar-header">
+
+    </div>
+    <ul class="list-unstyled components">
+        <li>
+            <a class="button-two" href="/etudiant/edtJournee"><span>Suivi des heures</span></a>
+        </li>
+
+
+
+
+    </ul>
+    <ul class="list-unstyled CTAs">
+        <li>
+            <a href="/etudiant/profile" class="btn btn-light">Profil <i class="glyphicon glyphicon-user"></i></a>
+        </li>
+        <li>
+            <a href="/logout" class="btn btn-danger">Se déconnecter <i class="glyphicon glyphicon-off"></i></a>
+        </li>
+    </ul>
+</nav>
+<button type="button" id="sidebarCollapse" class="btn btn-info">
+    <i class="fas fa-align-left fa-2x"></i>
+</button>
+<button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="fas fa-align-justify"></i>
+</button>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidebar").mCustomScrollbar({
+            theme: "minimal"
+        });
+
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar, #content').toggleClass('active');
+            $('.collapse.in').toggleClass('in');
+            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+    });
+</script>

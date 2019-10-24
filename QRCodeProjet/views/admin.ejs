@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Administration</title>
+		<% include layout %>
+	</head>
+	<style>
+		h1 {
+			color: #005a4b;
+			text-transform: uppercase;
+			font-size: 60px;
+		}
+		strong.test{
+			color: #005a4b;
+
+		}
+		form{
+			color: #049283;
+			font-weight: bold;
+			display: inline;
+		}
+	</style>
+	<body>
+	<div class="wrapper">
+			<% include Menu %>
+		<div id="content">
+
+				<div align="center">
+					<div class="well">
+						<h3><span class="fa fa-user"></span> </h3>
+						<p>
+							<h1><strong>UniFlash</strong><br></h1>
+							<br>
+							<strong>Bienvenue</strong> sur le site de dématerialisation des fiches d'appel<br>
+							Vous êtes connecté en tant qu'<strong class="test">Administrateur</strong>.<br>
+							<br>
+							En tant que tel, vous avez accès à la gestion de plusieurs outils : <br>
+							<br>
+							<form action="/admin/users">
+								<input type="submit" value="Utilisateurs">
+							</form>
+							<form action="/admin/matieres">
+								<input type="submit" value="Matières">
+							</form>
+							<form action="/admin/seances">
+								<input type="submit" value="Séances">
+							</form>
+							<form action="/admin/promotions">
+								<input type="submit" value="Promotions">
+							</form>
+							<form action="/admin/fichepresence">
+								<input type="submit" value="PDF">
+							</form><br>
+						</p>
+					</div>
+				</div>
+
+		</div>
+	</div>
+	</body>
+</html>

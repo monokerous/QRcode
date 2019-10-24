@@ -1,0 +1,131 @@
+<!-- <nav class="navbar navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+            </button>
+            <a class="navbar-brand" href="/admin"></i>&nbsp;UniFlash</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a class="nav-item nav-link" href="/admin/users">Utilisateurs</a></li>
+                <li><a class="nav-item nav-link" href="/admin/matieres">Matières</a></li>
+                <li><a class="nav-item nav-link" href="/admin/seances">Séances</a></li>
+                <li><a class="nav-item nav-link" href="/admin/promotions">Promotions</a></li>
+                <li><a class="nav-item nav-link" href="/admin/fichepresence">PDF</a></li>
+                <li><a class="nav-item nav-link" href="/admin/suiviAbsences">Suivi des absences</a></li>
+                <li><a class="nav-item nav-link" href="/admin/suiviHeures">Suivi des heures effectuées</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="nav-item nav-link" href="/admin/profile">
+                        <i class="glyphicon glyphicon-user"></i>&nbsp;Profil</a>
+                </li>
+                <li><a href="/logout" >Déconnexion&nbsp;<i class="glyphicon glyphicon-off"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</nav> -->
+
+
+<!-- <nav role="navigation" class="navigation-menu">
+    <div id="menuToggle">
+        <input type="checkbox" />
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+        <ul id="menu">
+            <a class="button-two" href="/admin/users"><li><div>Utilisateurs</div></li></a>
+            <a class="button-two" href="/admin/matieres"><li><div>Matières</div></li></a>
+            <a class="button-two" href="/admin/seances"><li><div>Séances</div></li></a>
+            <a class="button-two" href="/admin/promotions"><li><div>Promotions</div></li></a>
+            <a class="button-two" href="/admin/fichepresence"><li><div>PDF</div></li></a>
+            <a class="button-two" href="/admin/suiviAbsences"><li><div>Suivi des absences</div></li></a>
+            <a class="button-two" href="/admin/suiviHeures"><li><div>Suivi des heures</div></li></a>
+
+            <a class="button-two " href="/admin/profile"><li class="sep"><div>Profil&nbsp;<i class="glyphicon glyphicon-user"></i></div></li></a>
+            <a class="button-two" href="/logout" ><li><div>Déconnexion&nbsp;<i class="glyphicon glyphicon-off"></i></div></li></a>
+        </ul>
+    </div>
+</nav>
+<header>
+    <div style="text-align:center;margin-top:35px;font-weight:bold;texxxt-decoration:none;">
+        <h1>UniFlash</h1>
+    </div>
+
+</header>
+<div class="on-top">
+
+
+</div>
+-->
+<!-- Sidebar  -->
+<nav id="sidebar">
+    <div class="sidebar-header">
+
+    </div>
+    <ul class="list-unstyled components">
+        <li>
+            <a class="button-two" href="/admin"><span>Accueil</span></a>
+        </li>
+        <li>
+            <a class="button-two" href="/admin/users"><span>Utilisateurs</span></a>
+        </li>
+        <li>
+            <a class="button-two" href="/admin/matieres"><span>Matières</span></a>
+        </li>
+        <li>
+            <a class="button-two" href="/admin/seances"><span>Séances</span></a>
+        </li>
+        <li>
+            <a class="button-two" href="/admin/promotions"><span>Promotions</span></a>
+        </li>
+        <li>
+            <a class="button-two" href="/admin/fichepresence"><span>PDF</span></a>
+        </li>
+        <li>
+            <a class="button-two" href="/admin/suiviAbsences"><span>Suivi des absences</span></a>
+        </li>
+        <li>
+            <a class="button-two" href="/admin/suiviHeures"><span>Suivi des heures</span></a>
+        </li>
+
+
+
+
+    </ul>
+    <ul class="list-unstyled CTAs">
+        <li>
+            <a href="/admin/profile" class="btn btn-light">Profil <i class="glyphicon glyphicon-user"></i></a>
+        </li>
+        <li>
+            <a href="/logout" class="btn btn-danger">Se déconnecter <i class="glyphicon glyphicon-off"></i></a>
+        </li>
+    </ul>
+</nav>
+<button type="button" id="sidebarCollapse" class="btn btn-info">
+    <i class="fas fa-align-left fa-2x"></i>
+</button>
+<button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="fas fa-align-justify"></i>
+</button>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidebar").mCustomScrollbar({
+            theme: "minimal"
+        });
+
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar, #content').toggleClass('active');
+            $('.collapse.in').toggleClass('in');
+            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+    });
+</script>
+
+<!--<script>-->
+    <!--$(document).ready(function() {-->
+        <!--$('a[href="' + this.location.pathname + '"]').parent().addClass('active');-->
+    <!--});-->
+<!--</script>-->

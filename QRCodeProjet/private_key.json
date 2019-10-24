@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "winged-quanta-233916",
+  "private_key_id": "fcfb7e61e5d96774dd60fbd95fef725ee85de375",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEuwIBADANBgkqhkiG9w0BAQEFAASCBKUwggShAgEAAoIBAQDG1bJoIZxDMCs9\nfuT5M7aGF4/pAG/j3zmwff+vFUK0tYgVa0srCXpwynAhpqkCYNEdEa7XVm/rbM1Z\nmECNDhh6Bw2wPh4iCS5lDH8rbz2ZGL+fP9xOTwSi55auOsVATvVn2L5DTAOhoBEk\ni4k6nIGx9fqjwkTfLh193Gg97C4o2LpfWHc/lGwEtC5Z9pf1Llk1UdtzfhnfiDD/\nOP7YnLy9jO0wQLHn9ayGlHb90SqIBhqju4rCQxTo2jIm9tGiKpWV+7yL6NEnXWtX\nlIOoa8CeucU/vLXydwXcOPWRgQaqbrwuaO4Oha8AMJUZm/7LRHbfhUeyn2WlGEY9\nidKJgbsZAgMBAAECgf9WJcBmiClr8t1z3MbYMc+jHrz7TB/ZBZ5jxDOYvV1pbj1y\nX5+ccJQxdNmgZX+pyB4nZMHxX+yd0/DPdhKBtYRlWn5TyJYa/l9bk06F7cHX0yEy\n842VYCcMwx+bMrDDwXISIZZNvLbWEBldUWzjjWuj7y8+RFgSr6hCH9IKV4n9p8+n\nXexPIQnBUOPggvSTqRHR+idUoRvYyvQey/ZP+/L6t+grD5uftiYFatv17KHtUPa4\no6LnSA7OJ2xF4+1lJTG5Y58BKIYgGVJ0KU3LHh9d3PIdstoYZfrt/UxXRcMwWzif\n9TqICb2En/SSRTP/GABei6yll0Kztfx8KrsYC0UCgYEA9A6SFW20LWEgUK8zHJe0\nB+0EHjFI34JxzQwlCMtNzMKuSHtXkDpiwsqT2ljGREuhvX/oYZWjkt9HsEdSMxEm\n+iJoY4u01JuvHo3A9dO6wlAXGwubTalZREX25DYG2iJvzxdn1V07UcVdS09WCEbm\nyuawsGb0ohrA+BddlOgyEAUCgYEA0JCavJTI8KARUZXVXxSB3YpcCFQ2IyVYPtY6\nC7n1SCd9ZCan3oK3BUdLUn3rt9dXWD606HNmeS6WyfnY23SSsRojkpAAwmHaRiCb\nwkAyPsavysG92droHMRL7ZbwOO4LcXX9ZURjs9gVUi9OXohL+0zF31y/8TezxPIU\nqYGErwUCgYBUGCkyBQkOkecGpjfgZE1+ZacDmEvZ6CK6WrLwIs19/p77DrUPV27s\nW80ycWBv6/ehSk+SQHOKijEzhn/GZOSfT/fURTFcCQEAcCvLCNfTWLF9ejRbQD0o\nD0uROySFSVRpcVEv7d4gwPbymjW0yGmCBJdhUTh+GuXfFn4CbzfA2QKBgE01SuMG\n3UAesWqXYg65o72ki59VtVjbaUiRu5k9tOyKGeQqXziDAUfF9b9K+CjtYds8E3J9\nzfCMa6vHfxz2kZtYRtTp1C4hVVFinuaRJ0iP+uG/SQ3N+OE1VbpVhwY8MSZGfJCx\neYtJMdNjyco7AI2+BP5D8pZUfYsp5rY9SSYVAoGBAJ5/neyAB2pFqzNVrivRq/wp\n3W+fsz1Olb5SZtj8FAAkfAEYV0m9cBH6LHdK37UI3b4Lz1tOrfzibO2cjboRhTc+\n13jt07hJZX4ubbdD7/pwYVhAbtioXY1PMkMv9/FbutyYrYsfX9Oxo6ItzIrJt4wr\noNc+ygpW8doFsMmG0rDw\n-----END PRIVATE KEY-----\n",
+  "client_email": "drivegoogle@winged-quanta-233916.iam.gserviceaccount.com",
+  "client_id": "103371874539174637683",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/drivegoogle%40winged-quanta-233916.iam.gserviceaccount.com"
+}

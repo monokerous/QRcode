@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Utilisateurs</title>
+        <% include ../layout %>
+    </head>
+    <body>
+        <div class="wrapper">
+            <% include ../Menu %>
+            <div id="content">
+                    <div class="container">
+                        <span class="pull-left"><h1>Utilisateurs :</h1></span>
+                        <span class="pull-right"><a class="btn btn-success btn-lg" href="/<%= chemin %>create" role="button"><span class="glyphicon glyphicon-plus"></span></a></span>
+                    </div>
+                    <div class="container" id="MainMenu">
+                        <div class="list-group panel">
+                            <a href="#etudiant" class="list-group-item " data-toggle="collapse" data-parent="#MainMenu"><strong>Etudiants</strong></a>
+                            <div class="collapse" id="etudiant">
+                                <ul class="nav nav-tabs">
+                                    <% for(var i=0; i<=promos.length-1; i++) { %>
+                                        <li  <% if(i == 1){ %>class="active"<% } %> ><a href="#<%= promos[i].nomP %>" data-toggle="tab" ><%= promos[i].nomP %></a></li>
+                                    <% } %>
+                                </ul>
+                                <!-- ************************************************************** -->
+                                <div class="tab-content">
+                                    <% for(var i=0; i<=promos.length-1; i++) { %>
+                                        <div id="<%= promos[i].nomP %>" class="tab-pane fade in  <% if(i == 1){ %>class="active"<% } %>" >
+                                            <% if(etudiants.length !=0) { %>
+                                                <table class="table table-hover" id="tableToggle" style="background-color: white; height: 100px;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class=""></th>
+                                                            <th class="" style="text-align: left">Identité</th>
+                                                            <th class="" style="text-align: left">Mail</th>
+                                                            <th class="" style="text-align: center">Promotion</th>
+                                                            <th class="" style="text-align: center"><span class="fa fa-cog"></span></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% for(var j=0; j<=etudiants.length-1; j++) {
+                                                            if(etudiants[j].nomP == promos[i].nomP) {%>
+                                                                <tr>
+                                                                    <td class="align-middle" style="text-align: center"><img src="/files/imgProfileUsers/<%= etudiants[j].imageProfileU %>" style="height:50px"></img></td>
+                                                                    <td class="align-middle" style="text-align: left"><b><%= etudiants[j].nomU +" "+ etudiants[j].prenomU %></b></td>
+                                                                    <td class="align-middle" style="text-align: left"><%= etudiants[j].mailU %></td>
+                                                                    <td class="align-middle" style="text-align: center"><%= etudiants[j].nomP %></td>
+                                                                    <td class="align-middle" style="text-align: center"><a class="btn btn-danger" href="/<%= chemin %>" onclick="confirmBeforeDelete('<%= etudiants[j].id %>', '<%= chemin %>')" role="button"><span class="glyphicon glyphicon-trash"></span></a>&nbsp;&nbsp;&nbsp;
+                                                                <a class="btn btn-primary" href="/<%= chemin %><%= etudiants[j].id %>" role="button"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;&nbsp;</td>
+                                                                </tr>
+                                                            <%}
+                                                        } %>
+                                                    </tbody>
+                                                </table>
+                                            <% }%>
+                                        </div>
+                                    <%}%>
+                                </div>
+                                <!-- ************************************************************** -->
+                            </div>
+                            <a href="#enseignant" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><strong>Enseignants</strong></a>
+                            <div class="collapse" id="enseignant">
+                                <% for(var i=0; i<=enseignants.length-1; i++) {%>
+                                    <div class="list-group-item">
+                                        <div class="container">
+                                            <div class="col-md-9">
+                                                <div><strong><%=(enseignants[i].nomU.toUpperCase())%>&nbsp;&nbsp;&nbsp;<%=(enseignants[i].prenomU.charAt(0).toUpperCase() + enseignants[i].prenomU.substr(1))%></strong></div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <span class="pull-right"><a class="btn btn-danger" href="/<%= chemin %>" onclick="confirmBeforeDelete('<%= enseignants[i].id %>', '<%= chemin %>')" role="button"><span class="glyphicon glyphicon-trash"></span></a>&nbsp;&nbsp;&nbsp;</span>
+                                                <span class="pull-right"><a class="btn btn-primary" href="/<%= chemin %><%= enseignants[i].id %>" role="button"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;&nbsp;</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% } %>
+                                <% if (enseignants.length == 0) {%>
+                                    <div class="list-group-item">
+                                        <div class="container">
+                                            <div class="col-md-9">
+                                                <div>Il n'y a pas encore d'enseignant.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% } %>
+                            </div>
+                            <a href="#administration" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><strong>Administration</strong></a>
+                            <div class="collapse" id="administration">
+                                <% for(var i=0; i<=administration.length-1; i++) {%>
+                                    <div class="list-group-item">
+                                        <div class="container">
+                                            <div class="col-md-9">
+                                                <div><strong><%=(administration[i].nomU.toUpperCase())%>&nbsp;&nbsp;&nbsp;<%=(administration[i].prenomU.charAt(0).toUpperCase() + administration[i].prenomU.substr(1))%></strong></small></div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <% if(session!=administration[i].id && nbAdmin>1) { %>
+                                                    <span class="pull-right"><a class="btn btn-danger" href="/<%= chemin %>" onclick="confirmBeforeDeleteAdmin('<%= administration[i].id %>', '<%= chemin %>')" role="button"><span class="glyphicon glyphicon-trash"></span></a>&nbsp;&nbsp;&nbsp;</span>
+                                                <% } else { %>
+                                                    <span class="pull-right"><a class="btn btn-danger disabled"><span class="glyphicon glyphicon-trash"></span></a>&nbsp;&nbsp;&nbsp;</span>
+                                                <% } %>
+                                                <span class="pull-right"><a class="btn btn-primary" href="/<%= chemin %><%= administration[i].id %>" role="button"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;&nbsp;</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </body>
+</html>

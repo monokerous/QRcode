@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Valider présence</title>
+        <link rel="icon" type="image/png" href="/files/favicon.PNG" />
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="/styles/style.css" rel="stylesheet" type="text/css">
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="/scripts/script.js"></script>
+
+        <script src="/scripts/jquery.qrcode.js"></script>
+        <script src="/scripts/qrcode.js"></script>
+		
+		<style>
+		#SignOK {
+			color:limegreen !important;
+			
+		}
+		#SignKO {
+			color:red !important;
+			
+		}
+		
+		#signature{
+		  display: none;
+		}
+		</style>
+    </head>
+    <body>
+        <div class="container" >
+		    <div class="row justify-content-center">
+			  <div class="col-xs-4 "><img id="imgfichepresence" src="file:///<%=assestPath%>/files/cfa-afia.png"></div>
+			  <div class="col-xs-4 "><img id="imgfichepresence" src="file:///<%=assestPath%>/files/univ-evry.png"></div>
+			  <div class="col-xs-4 "><img id="imgfichepresence" src="file:///<%=assestPath%>/files/paris-saclay.png"></div>
+			</div><br/>
+			<div id="titre" class="container">
+				<!-- <h1 class="text-center">Fiche de Présence <small>(<%=(moment(date).format("DD/MM/YYYY"))%> - <%= promo %>)</small></h1> -->
+				<h1 class="text-center">Fiche de Présence - <%=(moment(date).format("DD/MM/YYYY"))%></h1>
+				<h2 class="text-center"><%= promo %> MIAGE Apprentissage</h2>
+			</div><br/>
+			<a class="btn btn-danger"  href="/admin/fichePresence/recap<%= date %><%= promo %>" role="button" target="_blank" > Génerer PDF  <i class="fa fa-file-pdf-o"  style="font-size:20px;color:white;"></i></a>
+			<br/><br/>
+			<h4 class="pull-left"><b>Nombre d'étudiants : </b><%= nbEtudiantPromo %></h4>
+			<br/><br/>
+            <table class="table table-bordered" style="background-color: white">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <% Object.keys(allSeances.entete).forEach(function(key){%>
+                            <th><%- allSeances.entete[key] %></th>
+                        <%});%>
+                    </tr>
+					<tr>
+						<th scope="col"></th>
+						<% Object.keys(allSeances.entete).forEach(function(key){%>
+							<th><%- (allSeances.heureDebut[key])%> - <%- allSeances.heureFin[key] %></th>
+                        <%});%>
+					</tr>
+                </thead>
+                <tbody>
+                    <% Object.keys(allSeances.lignes).forEach(function(key){%>
+                        <tr>
+                            <th scope="row"><%- allSeances.etudiants[key] %></th>
+                            <%Object.keys(allSeances.lignes[key]).forEach(function(key2){%>
+                            <td>
+                                <% 
+								if(allSeances.lignes[key][key2] != 0) { 
+								%>
+                                    <span id="SignOK" class="glyphicon glyphicon-ok"></span>
+                                <% } else {%>
+                                    <span id="SignKO" class="glyphicon glyphicon-remove">&nbsp;</span><span id="SignKO" class="glyphicon glyphicon-hand-left"></span>
+                                <% } %>
+
+                            </td>
+                            <%});%>
+                        </tr>
+						
+                    <%});%>
+                </tbody>
+				<tbody>
+                <tbody>
+                    <tr>
+                        <th scope="row">Enseignant</th>
+                        <% Object.keys(allSeances.enseignants).forEach(function(key){%>
+                            <th><%- allSeances.enseignants[key] %></th>
+                        <%});%>
+                    </tr>
+                </tbody>
+				<tbody>
+					<tr>
+						<th scope="row">Nombre d'absents</th>
+						<% Object.keys(allSeances.nbPresent).forEach(function(key){%>
+                            <th><%- nbEtudiantPromo-allSeances.nbPresent[key] %> / <%= nbEtudiantPromo %></th>
+                        <%});%>
+					</tr>
+				</tbody>
+                <!-- <tbody> 
+                    <tr>
+                        <th scope="row">Commentaire</th>
+                        <% Object.keys(allSeances.entete).forEach(function(key){%>
+                            <th><%- allSeances.commentaire[key] %></th>
+                        <%});%>
+                    </tr>
+                </tbody>-->
+            </table>
+			<br/>
+			<div class="pull-right" id="bouton" onclick="javascript:viewImage('image');"><h4><b>Signature</b></h4></div><br/><br/>
+			<div class="pull-right" id="image"></div>
+			<br/><br/><br/><br/>
+			<br/>
+        </div>
+		<!-- Footer -->
+		<footer class="page-footer font-small ">
+
+		  <!-- Copyright -->
+		  <div class="footer-copyright text-left py-3">
+		  Fiche de Présence - <%=(moment(date).format("DD/MM/YYYY"))%> - <%= promo %> MIAGE Apprentissage
+		  </div>
+		  <!-- Copyright -->
+
+		</footer>
+		<!-- Footer -->
+		
+		<!-- <script type="text/javascript">
+		 var afficher=false; //permet de savoir si l'image est affichée ou non 
+             
+            function viewImage(id) {
+                var contenuImage=!afficher ? "<img src='/files/signatureElectronique.png' width='70%'>" : ""; //en fonction de afficher on met l'image ou non
+                afficher=!afficher;
+                
+                 
+                document.getElementById(id).innerHTML=contenuImage;
+                document.getElementById("bouton").innerHTML=contenuBouton;
+           } 
+		 </script> -->
+    </body>
+</html>

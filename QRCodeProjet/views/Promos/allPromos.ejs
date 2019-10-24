@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Promotions</title>
+        <% include ../layout %>
+    </head>
+    <body>
+    <div class="wrapper">
+        <% include ../Menu %>
+        <div id="content">
+        <div class="container" >
+            <span class="pull-left"><h1 class="pull-left">Promotions :</h1></span>
+            <span class="pull-right"><a class="btn btn-success btn-lg" href="/<%= chemin %>create" role="button"><span class="glyphicon glyphicon-plus"></span></a></span>
+        </div>
+
+        <div class="container">
+            <% for(var i=0; i<=promos.length-1; i++) {%>
+                <div class="container list-group-item">
+                    <div class="col-md-9 ">
+                        <div><strong><%= promos[i].nomP %></strong></div>
+                    </div>
+                    <div class="col-md-2">
+                        <span class="pull-right"><a class="btn btn-danger" href="/<%= chemin %>" onclick="confirmBeforeDelete('<%= promos[i].idP %>', '<%= chemin %>')" role="button"><span class="glyphicon glyphicon-trash"></span></a>&nbsp;&nbsp;&nbsp;</span>
+                        <span class="pull-right"><a class="btn btn-primary" href="/<%= chemin %><%= promos[i].idP %>" role="button"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;&nbsp;</span>
+                    </div>
+                </div>
+            <% } %>
+            <% if (promos.length == 0) {%>
+                <div class="container list-group-item">
+                    <div class="col-md-9 ">
+                        <p>Il n'y a pas encore de promotion.</p>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+        </div>
+    </div>
+    </body>
+</html>

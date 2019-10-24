@@ -1,0 +1,50 @@
+
+<script>
+    function executeQuery() {
+        $.ajax({
+            //url: "http://qrcode.guillaumeperes.fr/enseignant/listEtuTrombinoscope',
+            url: 'http://localhost:8080/enseignant/listEtuTrombinoscope',
+            type: 'get',
+            success: function(data) { $("#refreshTROMBI").html(data); }
+        });
+    }
+
+    $('#refreshTROMBI').ready(function() {
+        setTimeout(executeQuery, 1000 * 60);
+    });
+</script>
+
+
+<div id="refreshTROMBI">
+    <h2>Liste étudiants :</h2>
+    <div class="table">
+        <div>
+            <% for(var i=0; i < etudiants.length ; i++) { %>
+                <% if(badge[i] != 0) { %>
+                    <img id="SignOKTrombinoscope" class="image-cropper" src="/files/imgProfileUsers/<%= etudiants[i].imageprofileU %>"></img>&nbsp;&nbsp;<td></td>
+                    <!--<span id="SignOK" class="glyphicon glyphicon-ok"></span>-->
+                <% } else { %>
+                    <img id="SignKOTrombinoscope" class="image-cropper" src='/files/imgProfileUsers/<%= etudiants[i].imageprofileU %>'></img>&nbsp;&nbsp;<td></td>
+                    <!--<span id="SignKOTrombinoscope" class="glyphicon glyphicon-ok"></span>-->
+                <% } %>
+            <% } %>
+        </div>
+        <br>
+        <br>
+        <div>
+            Nb de présent à cette séance :
+            <%= presence %>
+        </div>
+    </div>
+    <% if(seance[0].valideS ==0) { %>
+        <form id="form">
+            <div class="form-group">
+                <label>Commentaire</label>
+                <textarea class="form-control" name="commentaire"><%=(seance[0].commentaire)%></textarea>
+            </div>
+            <div class="pull-left">
+                <a href="/<%= chemin %>" class="btn btn-success btn-lg" style="margin-bottom:10px;" onclick="modifyItem('<%= seance[0].idS %>', '<%= chemin %>/')">Valider séance</a>
+            </div>
+        </form>
+    <% } %>
+</div>

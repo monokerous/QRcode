@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>EDT d'aujourd'hui : </title>
+    <% include layout%>
+</head>
+<body>
+    <div class="wrapper">
+
+    <div id="titre" class="container">
+        <% if(seance.length!=0) { %>
+            <% if(seance[0].roleU == "ETUDIANT") { %>
+                <% include Menus/MenuEtudiant %>
+            <% } else { %>
+                <% include Menus/MenuEnseignant %>
+            <% } %>
+        <% } %>
+
+        <h2 class="pull-left">Séances d'aujourd'hui :</h2>
+    </div>
+        <div id="content">
+    <div class="container">
+        <br>
+        <br>
+        <% if(seance.length!=0) { %>
+             <% for(var i=0; i<=seance.length-1; i++) { %>
+                <div class="col-md-6 col-md-offset-1 col-sm-6 col-sm-offset-1">
+                    <div class="panel panel-default">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th style="background-color:<% if(seance[i].valideS==0) { %> indianred <% } else { %> green <% } %>; color: white" class="text-center">
+                                    <%= seance[i].heureDebut %> -
+                                    <%= seance[i].heureFin %>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td style="background-color: white" class="text-center">
+                                    <%= seance[i].nomM %>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+
+
+            <% } %>
+        <% } else { %>
+            <div class="col-md-5">
+                <div class="container">
+                    Vous n'avez plus de cours aujourd'hui !
+                </div>
+            </div>
+        <% } %>
+    </div>
+        </div>
+        </div>
+</body>
+</html>

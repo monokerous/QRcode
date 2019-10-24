@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+    <title>Détail Utilisateur</title>
+    <% include ../layout %>
+	<style>
+		.eac-sugg {
+		  color: rgba(125,125,125,0.7);
+		}
+		
+	</style>
+</head>
+
+<body>
+<div class="wrapper">
+    <% include ../Menu %>
+    <div id="content">
+    <div class="container">
+        <div align="center">
+            <h1><span class="fa fa-sign-in"></span>Modifier l'Utilisateur</h1>
+        </div>
+
+        <div class="col-sm-3 col-md-3">
+            <img src="/files/imgProfileUsers/<%= user[0].imageProfileU %>" style="width:50%"></img><br>
+
+                <form ref='uploadForm'
+                      id='uploadForm'
+                      action='/admin/upload/<%= user[0].id%>&<%= user[0].nomU %>_<%= user[0].prenomU %>_<%= user[0].promotionU %>'
+                      method='post'
+                      encType="multipart/form-data">
+                    <input type="file" name="sampleFile"/><br>
+                    <input type='submit' value='Enregistrer' class="btn btn-primary btn-sm" />
+                </form>
+        </div>
+        <div class="col-sm-6 col-md-6">
+            <form id="form" name="usermodif">
+                <div class="form-group">
+                    <label>Nom</label>
+                    <input type="text" class="form-control" name="nom" value="<%=(user[0].nomU.toUpperCase())%>" maxlength="50" onchange="this.value=this.value.toUpperCase();"  required>
+                </div>
+                <div class="form-group">
+                    <label>Prénom</label>
+                    <input type="text" class="form-control" name="prenom" value="<%=(user[0].prenomU.charAt(0).toUpperCase() + user[0].prenomU.substr(1))%>" maxlength="50" onchange="this.value=this.value.charAt(0).toUpperCase() + this.value.substr(1);" required>
+                </div>
+                <div class="form-group">
+                    <label>Mail</label>
+                    <input type="email" class="form-control" name="mail"  id="mail"  value="<%=(user[0].mailU)%>" maxlength="100" required>
+                </div>
+                <% if((user[0].roleU)=="ETUDIANT"){ %>
+                <div class="form-group">
+                    <label>Promotion</label>
+                    <select name="promotion">
+                        <% for(var i=0; i<promos.length; i++) {%>
+                        <option value="<%=promos[i].idP%>" <% if(promos[i].idP==user[0].promotionU) { %> selected="selected" <% } %> ><%=promos[i].nomP%></option>
+                        <% } %>
+                    </select>
+                </div>
+                <% } %>
+
+                <div class="pull-right">
+                    <a href="/<%= chemin %>" class="btn btn-secondary btn-lg">Annuler</a>
+                    <a class="btn btn-primary btn-lg" onclick="formUserOK('<%= user[0].id %>', '<%= chemin %>')">Appliquer</a>
+                    <a id="redirection" href="/<%= chemin %>"></a>
+                </div>
+            </form>
+        </div>
+    </div>
+	<script>
+		/*
+		 *  email-autocomplete - 0.1.3
+		 *  jQuery plugin that displays in-place autocomplete suggestions for email input fields.
+		 *  
+		 *
+		 *  Made by Low Yong Zhen <yz@stargate.io> 
+		 */
+
+		"use strict";!function(a,b,c,d){function e(b,c){this.$field=a(b),this.options=a.extend(!0,{},f,c),this._defaults=f,this._domains=this.options.domains,this.init()}var f={suggClass:"eac-sugg",domains:["yahoo.com","hotmail.com","gmail.com","me.com","aol.com","mac.com","live.com","comcast.net","googlemail.com","msn.com","hotmail.co.uk","yahoo.co.uk","facebook.com","verizon.net","sbcglobal.net","att.net","gmx.com","outlook.com","icloud.com"]};e.prototype={init:function(){Array.prototype.indexOf||this.doIndexOf(),this.fieldLeftOffset=null;var b=a("<div class='eac-input-wrap' />").css({display:this.$field.css("display"),position:"static"===this.$field.css("position")?"relative":this.$field.css("position"),fontSize:this.$field.css("fontSize")});this.$field.wrap(b),this.$cval=a("<span class='eac-cval' />").css({visibility:"hidden",position:"absolute",display:"inline-block",fontFamily:this.$field.css("fontFamily"),fontWeight:this.$field.css("fontWeight"),letterSpacing:this.$field.css("letterSpacing")}).insertAfter(this.$field);var c=(this.$field.outerHeight(!0)-this.$field.height())/2;this.$suggOverlay=a("<span class='"+this.options.suggClass+"' />").css({display:"block","box-sizing":"content-box",lineHeight:this.$field.css("lineHeight"),paddingTop:c+"px",paddingBottom:c+"px",fontFamily:this.$field.css("fontFamily"),fontWeight:this.$field.css("fontWeight"),letterSpacing:this.$field.css("letterSpacing"),position:"absolute",top:0,left:0}).insertAfter(this.$field),this.$field.on("keyup.eac",a.proxy(this.displaySuggestion,this)),this.$field.on("blur.eac",a.proxy(this.autocomplete,this)),this.$field.on("keydown.eac",a.proxy(function(a){39!==a.which&&9!==a.which||this.autocomplete()},this)),this.$suggOverlay.on("mousedown.eac touchstart.eac",a.proxy(this.autocomplete,this))},suggest:function(a){var b=a.split("@");return b.length>1?(a=b.pop(),a.length?(this._domains.filter(function(b){return 0===b.indexOf(a)}).shift()||"").replace(a,""):""):""},autocomplete:function(){if(void 0===this.suggestion||this.suggestion.length<1)return!1;this.$field.val(this.val+this.suggestion),this.$suggOverlay.text(""),this.$cval.text("")},displaySuggestion:function(a){this.val=this.$field.val(),this.suggestion=this.suggest(this.val),this.suggestion.length?a.preventDefault():this.$suggOverlay.text(""),this.$suggOverlay.text(this.suggestion),this.$cval.text(this.val),null===this.fieldLeftOffset&&(this.fieldLeftOffset=(this.$field.outerWidth(!0)-this.$field.width())/2);var b=this.$cval.width();this.$field.outerWidth()>b&&this.$suggOverlay.css("left",this.fieldLeftOffset+b+"px")},doIndexOf:function(){Array.prototype.indexOf=function(a,b){if(void 0===this||null===this)throw new TypeError('"this" is null or not defined');var c=this.length>>>0;for(b=+b||0,Math.abs(b)===1/0&&(b=0),b<0&&(b+=c)<0&&(b=0);b<c;b++)if(this[b]===a)return b;return-1}}},a.fn.emailautocomplete=function(b){return this.each(function(){a.data(this,"yz_emailautocomplete")||a.data(this,"yz_emailautocomplete",new e(this,b))})}}(jQuery,window,document);
+	</script>
+	<script>
+		$("#mail").emailautocomplete({
+		  suggClass: "eac-sugg",
+		  domains: ["hotmail.com","yahoo.com","gmail.com","hotmail.fr"]
+		});
+	</script>
+        </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Séances</title>
+        <% include ../layout %>
+    </head>
+    <body>
+	<div class="wrapper">
+        <% include ../Menu %>
+		<div id="content">
+        <div class="container">
+            <span class="pull-left"><h1 class="pull-left">Séances :</h1></span>
+        </div>
+        <div class="container" id="MainMenu">
+            <div class="list-group panel">
+				<ul class="nav nav-tabs">
+					<% for(var i=0; i<=promos.length-1; i++) { %>
+						<li  <% if(i == 1){ %>class="active"<% } %> ><a href="#<%= promos[i].nomP %>" data-toggle="tab" ><%= promos[i].nomP %></a></li>
+					<% } %>
+				</ul>
+				<!-- ************************************************************** -->
+				<div class="tab-content">
+					<% for(var i=0; i<=promos.length-1; i++) { %>
+						<div id="<%= promos[i].nomP %>" class="tab-pane fade in  <% if(i == 1){ %>class="active"<% } %>" >				
+							<table class="table table-hover" id="tableToggle" style="background-color: white; height: 100px;">
+								<thead>
+									<tr>
+										<th class="info" style="text-align: center"></th>
+									<% for(var m=0; m<=mois.length-1; m++) { %>
+										<th class="info" style="text-align: center"><%= mois[m] %></th>
+									<%}%>
+										<th class="info" style="text-align: center">Total effectué</th>
+										<th class="info" style="text-align: center">Ecart</th>
+										<th class="info" style="text-align: center">Total prévu</th>
+									</tr>
+								</thead>
+								<tbody>
+									<% if (matieres.length !=0) { %>
+										<% for(var j=0; j<=matieres.length-1; j++) {
+											if(matieres[j].nomP == promos[i].nomP) {%>
+												<tr>
+													<td class="info" style="text-align: left"><b><%= matieres[j].nomM %></b></td>
+													<% var heuresEffectuees = 0;
+													for(var k=0;k<=heures.length-1;k++){%>
+														<%if(matieres[j].idM == heures[k].idM) {
+														heuresEffectuees = heures[k].sept+heures[k].octobre+heures[k].novembre+heures[k].decembre+heures[k].janvier+heures[k].fevrier+heures[k].mars+heures[k].avril+heures[k].mai+heures[k].juin+heures[k].juillet + heures[k].aout+heures[k].septembre;
+														%>
+															<td class="" style="text-align: center"><%= heures[k].sept %></td>
+															<td class="" style="text-align: center"><%= heures[k].octobre %></td>
+															<td class="" style="text-align: center"><%= heures[k].novembre %></td>
+															<td class="" style="text-align: center"><%= heures[k].decembre %></td>
+															<td class="" style="text-align: center"><%= heures[k].janvier %></td>
+															<td class="" style="text-align: center"><%= heures[k].fevrier %></td>
+															<td class="" style="text-align: center"><%= heures[k].mars %></td>
+															<td class="" style="text-align: center"><%= heures[k].avril %></td>
+															<td class="" style="text-align: center"><%= heures[k].mai %></td>
+															<td class="" style="text-align: center"><%= heures[k].juin %></td>
+															<td class="" style="text-align: center"><%= heures[k].juillet %></td>
+															<td class="" style="text-align: center"><%= heures[k].aout %></td>
+															<td class="" style="text-align: center"><%= heures[k].septembre %></td>
+														<%}%>
+													<%}%>
+													<td class="info" style="text-align: center"><%= heuresEffectuees%></td>
+													<td <%if(matieres[j].totalHeure - heuresEffectuees == 0){%>class="success"<%}else if(matieres[j].totalHeure - heuresEffectuees < (matieres[j].totalHeure/2) ){%>class="warning"<%}else{%>class="danger"<%}%> style="text-align: center"><%= matieres[j].totalHeure - heuresEffectuees%></td>
+													<td class="info" style="text-align: center"><%= matieres[j].totalHeure %></td>
+												</tr>
+											<%}%>
+										<%}%>
+									<%}%>
+									<tr>
+										<td class="info" style="text-align: center"><b>TOTAL</b></td>
+										<td class="info" style="text-align: center"><b>6</b></td>
+										<td class="info" style="text-align: center"><b>6</b></td>
+										<td class="info" style="text-align: center"><b>6</b></td>
+										<td class="info" style="text-align: center"><b>6</b></td>
+										<td class="info" style="text-align: center"><b>6</b></td>
+										<td class="info" style="text-align: center"><b>6</b></td>
+										<td class="info" style="text-align: center"><b>6</b></td>
+										<td class="info" style="text-align: center"><b>6</b></td>
+										<td class="info" style="text-align: center"><b>6</b></td>
+										<td class="info" style="text-align: center"><b>6</b></td>
+										<td class="info" style="text-align: center"><b>6</b></td>
+										<td class="info" style="text-align: center"><b>6</b></td>
+										<td class="info" style="text-align: center"><b>6</b></td>
+										<td class="info" style="text-align: center"><b>450</b></td>
+										<td class="info" style="text-align: center"><b>150</b></td>
+										<td class="info" style="text-align: center"><b>600</b></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					<% } %>
+				</div>
+				<!-- ************************************************************** -->               
+            </div>
+        </div>
+		</div>
+	</div>
+    </body>
+</html>

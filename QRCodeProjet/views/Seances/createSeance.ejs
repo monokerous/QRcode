@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Création Séance</title>
+        <% include ../layout %>
+    </head>
+    <body>
+    <div class="wrapper">
+        <% include ../Menu %>
+            <div id="content">
+                <div class="container">
+                    <div class="col-sm-6 col-sm-offset-3">
+
+                        <h1>Séance</h1>
+
+                        <form action="/<%= chemin %>" method="post">
+                            <div class="form-group">
+                                <label>Nom :</label>
+                                <input type="text" class="form-control" name="nom" maxlength="50" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Date :</label>
+                                <input type="date" id="dateseance" class="form-control" name="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Heure Début :</label>
+                                <input type="time" class="form-control" name="hDebut" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Heure Fin :</label>
+                                <input type="time" class="form-control" name="hFin" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Matière :</label>
+                                <select name="matiere">
+                                    <% for(var i=0; i<matieres.length; i++) {%>
+                                    <option value="<%=matieres[i].idM%>"><%=matieres[i].nomM%></option>
+                                    <% } %>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Enseignant :</label>
+                                <select name="user">
+                                    <% for(var i=0; i<enseignants.length; i++) {%>
+                                    <option value="<%=enseignants[i].id%>"><%=enseignants[i].nomU%></option>
+                                    <% } %>
+                                </select>
+                            </div>
+                            <div class="pull-right">
+                                <a href="/<%= chemin %>" class="btn btn-secondary btn-lg">Annuler</a>
+                                <button type="submit" class="btn btn-success btn-lg">Créer</button>
+                            </div>
+                        </form>
+                    </div>
+                    </div>
+                </div>
+            </div>
+    </body>
+</html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+    <title>Signaler présence</title>
+    <% include ../layout %>
+</head>
+<body>
+
+<div class="container" >
+    <% include ../Menus/MenuEtudiant %>
+    <h1 align="center">Signaler sa présence</h1>
+    <h2>
+        <%= seance.nomM %>
+            <small>
+                <%= seance.dateS %>
+                (<%= seance.heureDebut %> -
+                <%= seance.heureFin %>)
+            </small>
+    </h2>
+    <% if (peutSigner) { %>
+        <form action="/<%= chemin %>" method="post">
+            <input type="submit" class="btn btn-success btn-lg btn-block" value="Signaler sa présence"/>
+        </form>
+    <% } else { %>
+        <% if(dejaPresent){%>
+            <button type="button" class="btn disabled btn-lg btn-block">Vous ètes présent à cette séance</button>
+        <% } else { %>
+            <button type="button" class="btn disabled btn-lg btn-block">L'horaire est dépassé, vous ne pouvez plus signer.</button>
+        <% } %>
+    <% } %>
+
+
+
+</div>
+</body>
+</html>
