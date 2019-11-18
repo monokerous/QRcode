@@ -57,12 +57,12 @@ module.exports = function(app, passport) {
         });
 	});
 
-/*    app.post('/admin/users', passport.authenticate('local-signup', {
+    app.post('/admin/users', passport.authenticate('local-signup', {
 		successRedirect : '/admin/users',
 		failureRedirect : '/admin/users/create',
 		failureFlash : true // allow flash messages
 	}));
-*/
+
 
 	app.get('/admin/profile', function(req, res, next){ CheckLog(req, res, next, "ADMINISTRATION");}, function(req, res) {
 		res.status(200).render('profile.ejs', { user : req.user });
