@@ -6,7 +6,7 @@ var express = require('express')
 var app = express();
 
 var connection=mysql.createConnection({
-    host:'127.0.0.1',
+    host:'localhost',
     user:'root',
     database:'qrcode',
 	charset : 'utf8mb4',
