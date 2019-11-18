@@ -43,7 +43,7 @@ module.exports = function(passport) {
                     return done(err);
                 if (rows.length)
                     return done(null, false, req.flash('signupMessage', 'That mail is already taken.'));
-                /*else
+                else
                 {
                    var query = User.PutUserIdImgProfil(req.param("id"), namefile, function (err, rows) {
                         if (err)
@@ -54,7 +54,8 @@ module.exports = function(passport) {
 
                     var newUserMysql = {
                         username: req.body.prenom.substring(0, 2) + req.body.nom.substring(0, 4),
-                        password: bcrypt.hashSync(req.body.prenom.substring(0, 2) + req.body.nom.substring(0, 4), null, null),  // use the generateHash function in our user model
+                        password: req.body.prenom.substring(0, 2) + req.body.nom.substring(0, 4),
+                        //bcrypt.hashSync(req.body.prenom.substring(0, 2) + req.body.nom.substring(0, 4), null, null),  // use the generateHash function in our user model
                         prenomU: req.body.prenom,
                         nomU: req.body.nom,
                         mailU: req.body.mail,
@@ -82,7 +83,7 @@ module.exports = function(passport) {
                     return done(null, req.user);
 
                     });
-                }*/
+                }
             });
         })
     );
