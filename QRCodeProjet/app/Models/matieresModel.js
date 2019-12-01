@@ -27,7 +27,7 @@ var Matiere={
     },
 
     PutMatiereId:function(id, nom, promo, totalHeure, callback) {
-        return connection.query("update matiere SET nomM=?, promotionS=? totalHeure=?  where idM=?", [nom, promo, totalHeure, id], callback)
+        return connection.query("update matiere SET nomM=?, promotionS=?, totalHeure=?  where idM=?", [nom, promo, totalHeure, id], callback);
     },
 
     DelMatiereId:function(id) {
