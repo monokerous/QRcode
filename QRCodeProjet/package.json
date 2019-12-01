@@ -38,7 +38,8 @@
     "pdf": "^0.1.0",
     "pdf-image": "^2.0.0",
     "pdf-maker": "^0.0.2",
-    "qr-image": "^3.2.0"
+    "qr-image": "^3.2.0",
+    "qrcode": "^1.4.4"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.7.2"

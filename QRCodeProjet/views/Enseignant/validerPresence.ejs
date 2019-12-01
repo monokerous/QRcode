@@ -1,5 +1,4 @@
 <!doctype html>
-<html id="allrefresh">
     </head>
         <title>Valider présence</title>
         <% include ../layout %>
@@ -36,7 +35,7 @@
                         <div id="qrcodeCanvas"></div>
                     </div>
                 </div>
-                <script>
+                <script >
                     $('#qrcodeCanvas').qrcode({
                         text	: "http://localhost:8080/<%= seance[0].idS %>"
                     });
