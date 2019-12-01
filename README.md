@@ -39,6 +39,9 @@ Fonctionnalités faites :
 * B1.2 Suivre les heures effectuées par mois et matière --> B2.2
 * B1.3 Afficher les absences --> B2.3
 
+Fonctionnalités faites Novembre - Décembre 2019 : 
+* installation du server Seafile sur une machine Virtual Box sous l'OS Ubuntu 18.04.
+
 A l’aide de la technologie QR Code, le serveur pourra générer automatiquement (avec un planificateur de tâches : node-cron) des QR Codes (avant la 1ère plage horaire de cours) qui changeront pour chaque heure de cours en fonction de l’emploi du temps de chaque professeur (emploi du temps renseigné dans la bdd ; L’objectif suivant étant de le lié au VT d’Evry). Une fois cette action terminée, le serveur enverra un mail aux enseignants contenant les QR codes leurs correspondants. Ce code sera affiché par le professeur à chaque début de plage horaire. Les élèves devront scanner ce code à chaque début de plage horaire afin de notifier leur présence en cours.  
 
 Lorsque l’on scanne le QR Code, celui-ci nous renvoie une URL contenant toutes les informations cryptées (afin d’éviter toute fraude des étudiants) sur la séance et qui permet à l’étudiant de signaler sa présence. Les chaînes de caractères cryptées seront stockées dans la base de données et seront “mappées” avec les informations correspondantes.    
