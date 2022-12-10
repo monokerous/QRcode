@@ -20,7 +20,7 @@
     "dateformat": "^3.0.3",
     "ejs": "^2.6.1",
     "email-autocomplete": "^0.1.1",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "express-fileupload": "^0.4.0",
     "express-session": "^1.15.6",
     "fast-csv": "^2.4.1",
